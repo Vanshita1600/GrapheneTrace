@@ -1,0 +1,35 @@
+<div class="chatbot" id="chatbot">
+  <section class="chatbot-panel" id="chatbotPanel" aria-label="DevChecks assistant" hidden>
+    <header class="chatbot-header">
+      <div>
+        <strong>DevChecks Assistant</strong>
+        <span class="chatbot-status">Online</span>
+      </div>
+      <button type="button" class="chatbot-close" id="chatbotClose" aria-label="Close chat">&times;</button>
+    </header>
+
+    <div class="chatbot-messages" id="chatbotMessages" aria-live="polite">
+      <div class="msg msg--bot">Hi {{ current_user.name or current_user.username }}! How can I help you today?</div>
+    </div>
+
+    <div class="chatbot-chips" id="chatbotChips">
+      <button type="button" class="chip" data-prompt="What can you do?">What can you do?</button>
+      <button type="button" class="chip" data-prompt="Tell me about checks">About checks</button>
+      <button type="button" class="chip" data-prompt="How do reports work?">Reports</button>
+    </div>
+
+    <form class="chatbot-form" id="chatbotForm" autocomplete="off">
+      <input type="text" id="chatbotInput" class="input" maxlength="500"
+             placeholder="Type a message" aria-label="Message">
+      <button type="submit" class="btn btn--small">Send</button>
+    </form>
+  </section>
+
+  <button type="button" class="chatbot-toggle" id="chatbotToggle"
+          aria-label="Open DevChecks assistant" aria-expanded="false" aria-controls="chatbotPanel">
+    <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor"
+         stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 8.6 8.6 0 0 1-3.5-.7L3 21l1.8-5A8.4 8.4 0 1 1 21 11.5z"/>
+    </svg>
+  </button>
+</div>

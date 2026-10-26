@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Sign in to DevChecks{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+
+{% block body %}
+<main class="auth-wrap auth-wrap--login">
+  <h1 class="auth-title">Sign in to DevChecks</h1>
+
+  <form class="card card--login" method="post" action="{{ url_for('login') }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+    {% include "_flash.html" %}
+
+    <div class="field">
+      <label for="email" class="label">Email address</label>
+      <input id="email" name="email" type="email" class="input" autocomplete="email"
+             value="{{ email }}" required autofocus>
+    </div>
+
+    <div class="field">
+      <label for="password" class="label">Password</label>
+      <div class="input-wrap">
+        <input id="password" name="password" type="password" class="input has-counter"
+               maxlength="72" data-counter autocomplete="current-password" required>
+        <span class="counter" aria-hidden="true">72</span>
+      </div>
+      <div class="row row--between">
+        <label class="checkbox">
+          <input type="checkbox" name="remember">
+          <span>Remember me for 2 weeks</span>
+        </label>
+        <a href="#" class="link">Forgot your password?</a>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn--block">Sign in</button>
+    <p class="center small-gap"><a class="link" href="{{ url_for('register') }}">Create a DevChecks account.</a></p>
+  </form>
+</main>
+{% endblock %}

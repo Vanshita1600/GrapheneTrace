@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% block title %}Create your DevChecks account{% endblock %}
+{% block body_class %}auth-page{% endblock %}
+
+{% block body %}
+<main class="auth-wrap auth-wrap--register">
+  <form class="card card--register" id="registerForm" method="post" action="{{ url_for('register') }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+
+    {% include "_flash.html" %}
+    <p class="flash flash--error" id="clientError" role="alert" hidden></p>
+
+    <div class="field">
+      <label for="name" class="label">Your name</label>
+      <input id="name" name="name" type="text" class="input" maxlength="100"
+             value="{{ form.name }}" autocomplete="name">
+      <p class="hint">Bugs you find will be publicly credited. Choose a pseudonym if you want to remain anonymous</p>
+    </div>
+
+    <div class="field">
+      <label for="username" class="label">Username<span class="req" aria-hidden="true">*</span></label>
+      <div class="input-wrap">
+        <input id="username" name="username" type="text" class="input has-counter"
+               maxlength="30" data-counter value="{{ form.username }}"
+               autocomplete="username" required>
+        <span class="counter" aria-hidden="true">30</span>
+      </div>
+      <p class="hint hint--tight">devchecks.com/<strong>&lt;username&gt;</strong></p>
+    </div>
+
+    <div class="field">
+      <label for="email" class="label">Email address<span class="req" aria-hidden="true">*</span></label>
+      <input id="email" name="email" type="email" class="input" value="{{ form.email }}"
+             autocomplete="email" required>
+    </div>
+
+    <div class="grid-2">
+      <div class="field">
+        <label for="password" class="label">Password<span class="req" aria-hidden="true">*</span></label>
+        <div class="input-wrap">
+          <input id="password" name="password" type="password" class="input has-counter"
+                 maxlength="72" data-counter autocomplete="new-password" required>
+          <span class="counter" aria-hidden="true">72</span>
+        </div>
+        <div class="strength" id="strength" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="confirm_password" class="label">Confirm password<span class="req" aria-hidden="true">*</span></label>
+        <div class="input-wrap">
+          <input id="confirm_password" name="confirm_password" type="password" class="input has-counter"
+                 maxlength="72" data-counter autocomplete="new-password" required>
+          <span class="counter" aria-hidden="true">72</span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <p class="legal">
+      By clicking 'Create account', you agree to our
+      <a href="#" class="link">Terms and Conditions</a> and acknowledge that you have read our
+      <a href="#" class="link">Code of Conduct</a>,
+      <a href="#" class="link">Privacy Policy</a> and
+      <a href="#" class="link">Disclosure Guidelines</a>.
+    </p>
+
+    <div class="center">
+      <button type="submit" class="btn">Create account</button>
+    </div>
+  </form>
+
+  <p class="center below-card">Already created an account? <a class="link" href="{{ url_for('login') }}">Log in here</a>.</p>
+</main>
+{% endblock %}

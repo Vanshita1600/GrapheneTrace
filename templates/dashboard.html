@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Dashboard - DevChecks{% endblock %}
+{% block body_class %}dashboard-page{% endblock %}
+
+{% block body %}
+<header class="topbar">
+  <a class="brand" href="{{ url_for('dashboard') }}">DevChecks</a>
+  <div class="topbar-right">
+    <span class="topbar-user">{{ current_user.username }}</span>
+    <form method="post" action="{{ url_for('logout') }}">
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <button type="submit" class="btn btn--outline btn--small">Sign out</button>
+    </form>
+  </div>
+</header>
+
+<main class="dashboard">
+  <h1 class="page-title">Welcome, {{ current_user.name or current_user.username }}</h1>
+  <p class="muted">Your DevChecks dashboard. More features will be added here.</p>
+
+  <div class="stat-grid">
+    <section class="card stat">
+      <h2 class="label">Projects</h2>
+      <p class="stat-value">0</p>
+      <p class="hint">No projects yet.</p>
+    </section>
+    <section class="card stat">
+      <h2 class="label">Checks run</h2>
+      <p class="stat-value">0</p>
+      <p class="hint">Run your first check to see results.</p>
+    </section>
+    <section class="card stat">
+      <h2 class="label">Open findings</h2>
+      <p class="stat-value">0</p>
+      <p class="hint">Nothing needs your attention.</p>
+    </section>
+  </div>
+</main>
+
+{% include "_chatbot.html" %}
+{% endblock %}
